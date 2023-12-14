@@ -71,7 +71,7 @@ model = YOLO('model.pt')
 game = sente.Game()
 go_visual = GoVisual(game)
 go_board = GoBoard(model)
-game = GoGame(game, go_board, go_visual, False)
+game = GoGame(game, go_board, go_visual, True)
 
 
 ProcessFrame = None
