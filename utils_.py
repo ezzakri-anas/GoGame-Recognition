@@ -672,7 +672,7 @@ def get_corners(results, padding=None):
     corner_boxes = np.array(results[0].boxes.xyxy[results[0].boxes.cls == 2])
     
     if len(corner_boxes) < 4:
-        raise Exception(f">>>>Incorrect number of corners! Detected {len(corner_boxes)} corners")
+        raise Exception(f"Incorrect number of corners! Detected {len(corner_boxes)} corners")
 
 
     corner_boxes_ = non_max_suppression(corner_boxes)
@@ -682,7 +682,7 @@ def get_corners(results, padding=None):
     corner_boxes = get_corners_inside_box(corner_boxes_, np.array(model_board_edges))
 
     if len(corner_boxes) != 4:
-        raise Exception(f">>>>Incorrect number of corners! Detected {len(corner_boxes)} corners and {len(corner_boxes_)} corners with NMS")
+        raise Exception(f"Incorrect number of corners! Detected {len(corner_boxes)} corners and {len(corner_boxes_)} corners with NMS")
 
     corner_centers = ((corner_boxes[:,[0, 1]] + corner_boxes[:,[2, 3]])/2)
     
