@@ -506,7 +506,11 @@ def lines_detection(model_results, perspective_matrix):
     empty_corner = get_key_points(model_results, 4, perspective_matrix)
     empty_edge = get_key_points(model_results, 5, perspective_matrix)
 
-    all_intersections = np.concatenate((empty_intersections, empty_corner, empty_edge), axis=0)
+    arrays = [empty_intersections, empty_corner, empty_edge]
+
+    arrays = [arr for arr in arrays if arr.size > 0]
+
+    all_intersections = np.concatenate(arrays, axis=0)
 
     all_intersections = all_intersections[all_intersections[:, 0].argsort()]
     all_intersections_x = all_intersections[:,0].reshape((-1, 1))

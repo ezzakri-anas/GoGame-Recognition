@@ -230,7 +230,7 @@ class GoVisual:
             cv2.circle(board, ((row+1)*square_size, (col+1)*square_size), circle_radius, color=(255, 255, 255), thickness=-1) # draw the stone
         
         #setting the contour of the last move to a different color
-        if not self.last_move is None:
+        if self.last_move is not None:
             row, col, color = self.last_move.get_x(), self.last_move.get_y(), self.last_move.get_stone().name
             stone_color = (0, 0, 0) if color == 'BLACK' else (255, 255, 255)
             cv2.circle(board, ((row+1)*square_size, (col+1)*square_size), circle_radius, color=(0,0,255), thickness=2) 
@@ -257,6 +257,18 @@ class GoVisual:
         return self.current_position()
 
     def draw_transparent(self, detected_state):
+        """
+        Draw the board without taking into account game rules. Show exactly what's on the board.
+        This makes using previous and next impossible.
+
+        Args:
+            detected_state: numpy.ndarray
+            the current state of the board: the stones and their positions stored in a 19x19x2 board like the sente.Board19
+        
+        Returns:
+            numpy.ndarray
+            The visual board to plot
+        """
         black_stones, white_stones = self.get_stones(detected_state)
         return self.drawBoard(black_stones, white_stones)
         
