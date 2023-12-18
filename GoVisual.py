@@ -262,32 +262,3 @@ class GoVisual:
         
 
 
-
-
-#%%
-from ultralytics import YOLO
-from GoGame import *
-
-#%%
-model = YOLO('model.pt')
-#%%
-model = YOLO('model.pt')
-game = sente.Game()
-go_visual = GoVisual(game)
-go_board = GoBoard(model)
-game = GoGame(game, go_board, go_visual, True)
-
-#%%
-
-# test = sente.Board19()
-
-# for i in range(state.shape[0]):
-#     for j in range(state.shape[1]):
-#         if np.array_equal(state[i, j], [1, 0]):  # Black stone
-#             test.play(sente.Move(i, j, sente.stone(1)))
-#         elif np.array_equal(state[i, j], [0, 1]):  # White stone
-#             test.play(sente.Move(i, j, sente.stone(2)))
-
-# # %%
-
-# # %%

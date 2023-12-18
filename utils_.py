@@ -668,7 +668,7 @@ def get_corners(results, padding=None):
     corner_boxes = np.array(results[0].boxes.xyxy[results[0].boxes.cls == 2])
     
     if len(corner_boxes) < 4:
-        raise Exception(f">>>>Incorrect number of corners! Detected {len(corner_boxes)} corners")
+        raise Exception(f"Incorrect number of corners! Detected {len(corner_boxes)} corners")
 
 
     corner_boxes_ = non_max_suppression(corner_boxes)
@@ -678,7 +678,7 @@ def get_corners(results, padding=None):
     corner_boxes = get_corners_inside_box(corner_boxes_, np.array(model_board_edges))
 
     if len(corner_boxes) != 4:
-        raise Exception(f">>>>Incorrect number of corners! Detected {len(corner_boxes)} corners and {len(corner_boxes_)} corners with NMS")
+        raise Exception(f"Incorrect number of corners! Detected {len(corner_boxes)} corners and {len(corner_boxes_)} corners with NMS")
 
     corner_centers = ((corner_boxes[:,[0, 1]] + corner_boxes[:,[2, 3]])/2)
     
@@ -732,10 +732,8 @@ def get_key_points(results, class_, perspective_matrix, output_edge=600):
         if len(key_points) != 0:
             key_points = np.array(key_points[:, [0, 1]])
             key_points_transf = cv2.perspectiveTransform(key_points.reshape((1, -1, 2)), perspective_matrix).reshape((-1, 2))
-            print("keypoint", key_points)
             return key_points_transf[(key_points_transf[:, 0:2] >= 0).all(axis=1) & (key_points_transf[:, 0:2] <= output_edge).all(axis=1)]
 
-    print("keypoint", key_points)
     return np.array(key_points)
 
 
