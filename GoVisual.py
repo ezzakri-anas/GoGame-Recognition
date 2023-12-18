@@ -1,8 +1,6 @@
 #%%
 import numpy as np
 import cv2
-from GoGame import *
-from GoBoard import *
 import sente
 # %%
 
@@ -24,7 +22,7 @@ class GoVisual:
         game : Sente
             the game instance created by Sente and updated by GoGame 
         """
-        self.game = game
+        self.game = sente.Game()
         self.board_size = 19
         self.last_move = None
         self.cursor = len(self.get_moves())
@@ -269,6 +267,7 @@ class GoVisual:
             numpy.ndarray
             The visual board to plot
         """
+        self.last_move = None
         black_stones, white_stones = self.get_stones(detected_state)
         return self.drawBoard(black_stones, white_stones)
         
